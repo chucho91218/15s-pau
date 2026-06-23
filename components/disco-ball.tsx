@@ -8,13 +8,10 @@ interface DiscoBallProps {
   color?: 'gold' | 'white'
 }
 
-// Ahora 'white' es el valor por defecto si no le pasás la propiedad
+// Mantenemos tu cambio: 'white' por defecto
 export function DiscoBall({ variant = 'icon', className = '', color = 'white' }: DiscoBallProps) {
   
-  // Si es blanca, usamos blanco puro (#ffffff). Si es gold, el gradiente.
   const mainStroke = color === 'white' ? '#ffffff' : 'url(#gold-metallic-premium)'
-  
-  // Fondo transparente para la versión blanca, así no genera un parche negro redondo
   const ballBackground = color === 'white' ? 'transparent' : '#000000'
 
   const BallSvg = ({ size = "100%" }) => (
@@ -24,7 +21,6 @@ export function DiscoBall({ variant = 'icon', className = '', color = 'white' }:
       style={{ width: size, height: size }}
     >
       <defs>
-        {/* Gradiente dorado premium */}
         <linearGradient id="gold-metallic-premium" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#fef3c7" />
           <stop offset="35%" stopColor="#fbbf24" />
@@ -46,7 +42,6 @@ export function DiscoBall({ variant = 'icon', className = '', color = 'white' }:
       
       {/* Cuadrícula de Espejos */}
       <g mask="url(#ball-mask-clip)" stroke={mainStroke} strokeWidth="0.7" fill="none" opacity="0.95">
-        {/* Líneas Horizontales curvas */}
         <path d="M 15 55 Q 50 70 85 55" />
         <path d="M 16 45 Q 50 60 84 45" />
         <path d="M 19 35 Q 50 50 81 35" />
@@ -55,7 +50,6 @@ export function DiscoBall({ variant = 'icon', className = '', color = 'white' }:
         <path d="M 19 75 Q 50 90 81 75" />
         <path d="M 25 85 Q 50 100 75 85" />
         
-        {/* Líneas Verticales curvas gajadas */}
         <path d="M 50 20 Q 30 55 50 90" />
         <path d="M 50 20 Q 10 55 50 90" />
         <path d="M 50 20 Q -10 55 50 90" />
@@ -67,7 +61,7 @@ export function DiscoBall({ variant = 'icon', className = '', color = 'white' }:
         </g>
       </g>
       
-      {/* Destellos / Brillo exterior estilo glitter */}
+      {/* Destellos / Brillo exterior */}
       <g className="animate-pulse" fill={mainStroke} opacity="1">
         <path d="M 12 25 L 14 27 M 14 25 L 12 27" stroke={mainStroke} strokeWidth="1.2" />
         <path d="M 86 28 L 88 30 M 88 28 L 86 30" stroke={mainStroke} strokeWidth="1.2" />
@@ -77,15 +71,15 @@ export function DiscoBall({ variant = 'icon', className = '', color = 'white' }:
     </svg>
   )
 
+  // OPTIMIZADO: Variante floating súper liviana (sin bucles de animación JS)
   if (variant === 'floating') {
     return (
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
-        className={`absolute pointer-events-none select-none opacity-[0.06] mix-blend-screen [filter:drop-shadow(0_0_20px_rgba(255,255,255,0.5))_blur(0.5px)] ${className}`}
+      <div 
+        className={`absolute pointer-events-none select-none opacity-[0.04] mix-blend-screen transform-gpu will-change-transform ${className}`}
+        style={{ width: '130px', height: '130px' }}
       >
-        <BallSvg />
-      </motion.div>
+        <div className="relative w-full h-full border border-white/20 rounded-full bg-gradient-to-br from-white/10 via-transparent to-neutral-900/50 shadow-[0_0_30px_rgba(255,255,255,0.08)]" />
+      </div>
     )
   }
 

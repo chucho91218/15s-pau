@@ -22,7 +22,6 @@ export function Gallery() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null)
 
   return (
-    // Estiramos el padding vertical a py-32 md:py-40 para despegarlo totalmente del mapa
     <section className="px-6 py-32 md:py-40 select-none bg-transparent">
       <div className="mx-auto max-w-5xl">
         
@@ -37,11 +36,10 @@ export function Gallery() {
           </h2>
         </Reveal>
 
-
         {/* Grilla estilo Mosaico */}
         <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
           {IMAGES.map((img, i) => (
-            <Reveal key={img.src} delay={i * 0.05}>
+            <Reveal key={img.src} delay={i * 0.03}>
               <div
                 onClick={() => setSelectedImg(img.src)}
                 className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-2xl border border-[#d4af37]/10 bg-black/40 transition-all duration-500 hover:border-[#d4af37]/40 hover:shadow-[0_0_30px_-10px_var(--night)]"
@@ -51,6 +49,8 @@ export function Gallery() {
                   alt={img.alt}
                   fill
                   sizes="(max-w-768px) 50vw, 25vw"
+                  quality={75} // Ajustamos calidad balanceada para que carguen al instante en 4G/5G
+                  loading="lazy" // <--- Clave: No consume RAM ni datos hasta estar cerca del viewport
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-[0.85] group-hover:brightness-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
@@ -88,7 +88,14 @@ export function Gallery() {
               className="relative aspect-[3/4] h-full max-h-[85vh] w-full max-w-xl overflow-hidden rounded-2xl border border-[#d4af37]/20"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image src={selectedImg} alt="Paula Vista Completa" fill className="object-contain" />
+              <Image 
+                src={selectedImg} 
+                alt="Paula Vista Completa" 
+                fill 
+                priority // <--- Forzamos carga inmediata solo al clickear para máxima nitidez
+                quality={90}
+                className="object-contain" 
+              />
             </motion.div>
           </motion.div>
         )}
