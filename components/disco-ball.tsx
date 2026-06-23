@@ -3,12 +3,20 @@
 import { motion } from 'framer-motion'
 
 interface DiscoBallProps {
-  variant?: 'icon' | 'floating'
+  variant?: 'icon' | 'floating' | 'divider'
   className?: string
+  color?: 'gold' | 'white'
 }
 
-export function DiscoBall({ variant = 'icon', className = '' }: DiscoBallProps) {
-  // SVG optimizado con gradientes metálicos y destellos neón azul
+// Ahora 'white' es el valor por defecto si no le pasás la propiedad
+export function DiscoBall({ variant = 'icon', className = '', color = 'white' }: DiscoBallProps) {
+  
+  // Si es blanca, usamos blanco puro (#ffffff). Si es gold, el gradiente.
+  const mainStroke = color === 'white' ? '#ffffff' : 'url(#gold-metallic-premium)'
+  
+  // Fondo transparente para la versión blanca, así no genera un parche negro redondo
+  const ballBackground = color === 'white' ? 'transparent' : '#000000'
+
   const BallSvg = ({ size = "100%" }) => (
     <svg
       viewBox="0 0 100 100"
@@ -16,26 +24,28 @@ export function DiscoBall({ variant = 'icon', className = '' }: DiscoBallProps) 
       style={{ width: size, height: size }}
     >
       <defs>
-        {/* Gradiente dorado premium para los bordes y reflejos espejo */}
-        <linearGradient id="gold-metallic" x1="0%" y1="0%" x2="100%" y2="100%">
+        {/* Gradiente dorado premium */}
+        <linearGradient id="gold-metallic-premium" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#fef3c7" />
-          <stop offset="50%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#b45309" />
+          <stop offset="35%" stopColor="#fbbf24" />
+          <stop offset="70%" stopColor="#c5a059" />
+          <stop offset="100%" stopColor="#92400e" />
         </linearGradient>
       </defs>
 
-      {/* Cadena/Sostén estilizada */}
-      <line x1="50" y1="0" x2="50" y2="15" stroke="url(#gold-metallic)" strokeWidth="1.2" strokeLinecap="round" />
-      <circle cx="50" cy="15" r="1.5" fill="url(#gold-metallic)" />
+      {/* Cadena / Sostén de la bola */}
+      <line x1="50" y1="0" x2="50" y2="15" stroke={mainStroke} strokeWidth="1.2" strokeLinecap="round" />
+      <circle cx="50" cy="15" r="1.5" fill={mainStroke} />
       
       {/* Esfera Principal */}
-      <circle cx="50" cy="55" r="35" fill="#000000" stroke="url(#gold-metallic)" strokeWidth="1.5" />
-      <mask id="ball-mask">
+      <circle cx="50" cy="55" r="35" fill={ballBackground} stroke={mainStroke} strokeWidth="1.6" />
+      
+      <mask id="ball-mask-clip">
         <circle cx="50" cy="55" r="34.2" fill="#ffffff" />
       </mask>
       
       {/* Cuadrícula de Espejos */}
-      <g mask="url(#ball-mask)" stroke="url(#gold-metallic)" strokeWidth="0.6" fill="none" opacity="0.85">
+      <g mask="url(#ball-mask-clip)" stroke={mainStroke} strokeWidth="0.7" fill="none" opacity="0.95">
         {/* Líneas Horizontales curvas */}
         <path d="M 15 55 Q 50 70 85 55" />
         <path d="M 16 45 Q 50 60 84 45" />
@@ -58,31 +68,31 @@ export function DiscoBall({ variant = 'icon', className = '' }: DiscoBallProps) 
       </g>
       
       {/* Destellos / Brillo exterior estilo glitter */}
-      <g className="animate-pulse" fill="url(#gold-metallic)" opacity="0.9">
-        <path d="M 12 25 L 14 27 M 14 25 L 12 27" stroke="url(#gold-metallic)" strokeWidth="1.2" />
-        <path d="M 86 28 L 88 30 M 88 28 L 86 30" stroke="url(#gold-metallic)" strokeWidth="1.2" />
-        <path d="M 82 78 L 84 80 M 84 78 L 82 80" stroke="url(#gold-metallic)" strokeWidth="1.2" />
-        <path d="M 14 74 L 16 76 M 16 74 L 14 76" stroke="url(#gold-metallic)" strokeWidth="1.2" />
+      <g className="animate-pulse" fill={mainStroke} opacity="1">
+        <path d="M 12 25 L 14 27 M 14 25 L 12 27" stroke={mainStroke} strokeWidth="1.2" />
+        <path d="M 86 28 L 88 30 M 88 28 L 86 30" stroke={mainStroke} strokeWidth="1.2" />
+        <path d="M 82 78 L 84 80 M 84 78 L 82 80" stroke={mainStroke} strokeWidth="1.2" />
+        <path d="M 14 74 L 16 76 M 16 74 L 14 76" stroke={mainStroke} strokeWidth="1.2" />
       </g>
     </svg>
   )
 
-  // Variante flotando de fondo (Rotación infinita hiper sutil)
   if (variant === 'floating') {
     return (
       <motion.div 
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
-        className={`absolute pointer-events-none select-none opacity-[0.06] mix-blend-screen [filter:drop-shadow(0_0_20px_rgba(59,130,246,0.5))_blur(0.5px)] ${className}`}
+        className={`absolute pointer-events-none select-none opacity-[0.06] mix-blend-screen [filter:drop-shadow(0_0_20px_rgba(255,255,255,0.5))_blur(0.5px)] ${className}`}
       >
         <BallSvg />
       </motion.div>
     )
   }
 
-  // Variante Icono (Arriba de títulos)
+  if (variant === 'divider') return null
+
   return (
-    <div className={`mx-auto size-10 [filter:drop-shadow(0_0_12px_rgba(251,191,36,0.2))] ${className}`}>
+    <div className={`mx-auto size-10 [filter:drop-shadow(0_0_20px_rgba(255,255,255,0.3))] ${className}`}>
       <BallSvg />
     </div>
   )

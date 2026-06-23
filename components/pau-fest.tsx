@@ -21,20 +21,21 @@ export function PauFest() {
           />
           
           <div className="relative flex flex-col items-center gap-10 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-center sm:text-left">
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-neutral-900/50 px-4 py-1.5">
-                <Radio className="size-3.5 text-blue-400 animate-pulse" strokeWidth={2} />
-                <span className="text-[10px] uppercase tracking-[0.25em] text-white/50">
-                  Canal de Instagram
-                </span>
-              </div>
-              <h2 className="font-serif text-5xl font-light text-white/90 sm:text-6xl">
-                Pau Fest
-              </h2>
-              <p className="mt-4 max-w-sm text-pretty leading-relaxed text-white/50 text-sm">
-                Sumate al canal para vivir cada detalle de la noche: novedades,
-                fotos y los momentos que vamos a compartir juntos.
-              </p>
+  <div className="text-center sm:text-left">
+    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-neutral-900/50 px-4 py-1.5">
+      <Radio className="size-3.5 text-blue-400 animate-pulse" strokeWidth={2} />
+      <span className="text-[10px] uppercase tracking-[0.25em] text-white/50">
+        Canal de Instagram
+      </span>
+    </div>
+    {/* Título de la sección cambiado a dorado premium */}
+    <h2 className="font-serif text-5xl font-light text-[#c5a059] sm:text-6xl">
+      Pau Fest
+    </h2>
+    <p className="mt-4 max-w-sm text-pretty leading-relaxed text-white/50 text-sm">
+      Sumate al canal para vivir cada detalle de la noche: novedades,
+      fotos y los momentos que vamos a compartir juntos.
+    </p>
               
               {/* Botón interactivo con glow azul */}
               <a

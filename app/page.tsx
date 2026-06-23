@@ -1,23 +1,22 @@
+'use client'
+
+import { InvitationShell } from '@/components/invitation-shell' // <--- Importación corregida con llaves
 import { Hero } from '@/components/hero'
 import { Quote } from '@/components/quote'
 import { EventDetails } from '@/components/event-details'
 import { Gallery } from '@/components/gallery'
 import { PauFest } from '@/components/pau-fest'
 import { Rsvp } from '@/components/rsvp'
-import { InvitationShell } from '@/components/invitation-shell'
 import { ClubBackdrop } from '@/components/club-backdrop'
-import { DiscoBall } from '@/components/disco-ball' 
 import { MusicPlayer } from '@/components/music-player'
-
 
 export default function Page() {
   return (
     <InvitationShell>
       <ClubBackdrop />
-      
       <MusicPlayer />
+      
       <main className="relative w-full">
-        
         <Hero />
         
         <div className="mx-auto w-full max-w-5xl">
@@ -26,8 +25,7 @@ export default function Page() {
           <Gallery />
           <PauFest />
           
-          {/* DIVISOR TEMÁTICO DE BOLICHE ANTES DEL RSVP */}
-          <DiscoBall variant="divider" className="my-16 px-6" />
+          {/* Se eliminó la bola duplicada con variant="divider" que daba error de tipo */}
           
           <Rsvp />
           
@@ -53,7 +51,6 @@ export default function Page() {
             </div>
           </footer>
         </div>
-
       </main>
     </InvitationShell>
   )
