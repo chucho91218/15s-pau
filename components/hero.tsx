@@ -4,6 +4,30 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Countdown } from './countdown'
 
+// Mini-componente interno para los destellos blancos elegantes
+function Sparkle({ className = "", delay = 0, duration = 3 }) {
+  return (
+    <motion.svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      animate={{ 
+        opacity: [0.1, 0.7, 0.1], 
+        scale: [0.7, 1.1, 0.7],
+        rotate: [0, 90, 180] 
+      }}
+      transition={{ 
+        repeat: Infinity, 
+        duration: duration, 
+        delay: delay,
+        ease: "easeInOut" 
+      }}
+      className={`absolute size-4 text-white pointer-events-none ${className}`}
+    >
+      <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z" />
+    </motion.svg>
+  )
+}
+
 export function Hero() {
   return (
     <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 py-24 text-center">
@@ -25,16 +49,23 @@ export function Hero() {
       {/* Brillo ambiental azul noche detrás del texto */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-night/20 blur-[130px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[130px]"
       />
 
       {/* Contenido centrado */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl">
+        
+        {/* Destellos Sparkle Blancos distribuidos de forma sutil */}
+        <Sparkle className="top-0 -left-6 md:-left-12 size-4 opacity-40" delay={0.2} duration={4} />
+        <Sparkle className="top-24 -right-4 size-3 opacity-30" delay={1.5} duration={3} />
+        <Sparkle className="bottom-28 -left-8 size-4.5 opacity-30" delay={0.7} duration={5} />
+        <Sparkle className="bottom-12 right-12 size-3.5 opacity-40" delay={2.2} duration={3.5} />
+
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="text-xs uppercase tracking-[0.55em] text-muted-foreground sm:text-sm font-sans"
+          className="text-xs uppercase tracking-[0.55em] text-white/50 sm:text-sm font-sans"
         >
           Mis XV Años
         </motion.p>

@@ -1,7 +1,9 @@
 'use client'
 
+import { motion } from 'framer-motion'
+
 interface DiscoBallProps {
-  variant?: 'icon' | 'divider' | 'floating'
+  variant?: 'icon' | 'floating'
   className?: string
 }
 
@@ -56,7 +58,7 @@ export function DiscoBall({ variant = 'icon', className = '' }: DiscoBallProps) 
       </g>
       
       {/* Destellos / Brillo exterior estilo glitter */}
-      <g className="animate-pulse animate-duration-1000" fill="url(#gold-metallic)" opacity="0.9">
+      <g className="animate-pulse" fill="url(#gold-metallic)" opacity="0.9">
         <path d="M 12 25 L 14 27 M 14 25 L 12 27" stroke="url(#gold-metallic)" strokeWidth="1.2" />
         <path d="M 86 28 L 88 30 M 88 28 L 86 30" stroke="url(#gold-metallic)" strokeWidth="1.2" />
         <path d="M 82 78 L 84 80 M 84 78 L 82 80" stroke="url(#gold-metallic)" strokeWidth="1.2" />
@@ -65,25 +67,16 @@ export function DiscoBall({ variant = 'icon', className = '' }: DiscoBallProps) 
     </svg>
   )
 
-  // Variante flotando de fondo (Usa el glow azul nocturno de boliche)
+  // Variante flotando de fondo (Rotación infinita hiper sutil)
   if (variant === 'floating') {
     return (
-      <div className={`absolute pointer-events-none select-none opacity-[0.06] mix-blend-screen [filter:drop-shadow(0_0_20px_rgba(59,130,246,0.5))_blur(0.5px)] ${className}`}>
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+        className={`absolute pointer-events-none select-none opacity-[0.06] mix-blend-screen [filter:drop-shadow(0_0_20px_rgba(59,130,246,0.5))_blur(0.5px)] ${className}`}
+      >
         <BallSvg />
-      </div>
-    )
-  }
-
-  // Variante Divisor de Secciones (Líneas sutiles desvanecidas que limpian el layout)
-  if (variant === 'divider') {
-    return (
-      <div className={`flex items-center justify-center w-full my-12 ${className}`}>
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="mx-6 size-12 [filter:drop-shadow(0_0_12px_rgba(251,191,36,0.25))]">
-          <BallSvg />
-        </div>
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      </div>
+      </motion.div>
     )
   }
 

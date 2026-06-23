@@ -9,10 +9,12 @@ import { ClubBackdrop } from '@/components/club-backdrop'
 import { DiscoBall } from '@/components/disco-ball' 
 import { MusicPlayer } from '@/components/music-player'
 
+
 export default function Page() {
   return (
     <InvitationShell>
       <ClubBackdrop />
+      
       <MusicPlayer />
       <main className="relative w-full">
         

@@ -2,6 +2,7 @@
 
 import { Calendar, Clock, Shirt, MapPin } from 'lucide-react'
 import { Reveal } from './reveal'
+import { DiscoBall } from './disco-ball'
 
 const DETAILS = [
   {
@@ -36,8 +37,11 @@ export function EventDetails() {
   return (
     <section className="px-6 py-20 sm:py-24 select-none">
       <div className="mx-auto max-w-4xl">
+        
+        {/* Cabecera unificada con bola de boliche e indicador en Dorado */}
         <Reveal className="text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-white/40">
+          <DiscoBall variant="icon" className="mb-4 text-[#c5a059]" />
+          <p className="text-xs uppercase tracking-[0.4em] text-[#c5a059] font-medium">
             Los Detalles
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light tracking-wide bg-gradient-to-r from-neutral-100 via-white to-neutral-400 bg-clip-text text-transparent sm:text-5xl">
@@ -84,4 +88,4 @@ export function EventDetails() {
       </div>
     </section>
   )
-}
+}98
