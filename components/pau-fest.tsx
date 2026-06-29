@@ -1,71 +1,112 @@
 'use client'
 
-import { QRCodeSVG } from 'qrcode.react'
-import { Radio, ArrowUpRight } from 'lucide-react'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Reveal } from './reveal'
-
-const CHANNEL_URL = 'https://whatsapp.com/channel/paufest'
 
 export function PauFest() {
   return (
-    <section className="px-6 py-20 sm:py-24">
-      <Reveal className="mx-auto max-w-3xl">
-        {/* Contenedor Glassmorphism Oscuro con Glow Azul */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.06] bg-neutral-950/40 p-8 backdrop-blur-md sm:p-12 hover:border-blue-500/20 transition-all duration-500">
-          
-          {/* Luz ambiental interna azul */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-blue-500/10 blur-3xl"
-          />
-          
-          <div className="relative flex flex-col items-center gap-10 sm:flex-row sm:items-center sm:justify-between">
-  <div className="text-center sm:text-left">
-    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-neutral-900/50 px-4 py-1.5">
-      <Radio className="size-3.5 text-blue-400 animate-pulse" strokeWidth={2} />
-      <span className="text-[10px] uppercase tracking-[0.25em] text-white/50">
-        Canal de Instagram
-      </span>
-    </div>
-    {/* Título de la sección cambiado a dorado premium */}
-    <h2 className="font-serif text-5xl font-light text-[#c5a059] sm:text-6xl">
-      Pau Fest
-    </h2>
-    <p className="mt-4 max-w-sm text-pretty leading-relaxed text-white/50 text-sm">
-      Sumate al canal para vivir cada detalle de la noche: novedades,
-      fotos y los momentos que vamos a compartir juntos.
-    </p>
-              
-              {/* Botón interactivo con glow azul */}
-              <a
-                href={CHANNEL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-7 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-950/20 px-6 py-3 text-sm tracking-wide text-white/90 transition-all duration-300 hover:bg-blue-600/20 hover:shadow-[0_0_25px_rgba(59,130,246,0.3)]"
-              >
-                Unirme al canal
-                <ArrowUpRight className="size-4 opacity-80" />
-              </a>
+    <section className="relative left-1/2 right-1/2 flex min-h-[75vh] w-screen -ml-[50vw] -mr-[50vw] items-center justify-center overflow-hidden py-24">
+
+      {/* Fondo - Forzando contraste y nitidez absoluta */}
+      <div className="pointer-events-none absolute inset-0 -z-20 select-none">
+        <img
+          src="/portadaoriginal.png"
+          alt="Portada Pau Fest"
+          className="h-full w-full object-cover object-center brightness-90 contrast-[1.25] saturate-[1.1]"
+          style={{ 
+            imageRendering: 'crisp-edges',
+            filter: 'contrast(1.25) brightness(0.9) saturate(1.1)' 
+          }}
+        />
+      </div>
+
+      {/* Capa oscura limpia */}
+      <div className="absolute inset-0 -z-10 bg-black/35" />
+
+      {/* Contenido - Mantiene su ancho centrado y prolijo */}
+      <div className="w-full max-w-6xl px-6">
+        <div className="rounded-3xl border border-white/15 bg-black/75 p-8 shadow-2xl md:p-12">
+
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+
+            {/* Izquierda */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+
+              <Reveal>
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs uppercase tracking-widest text-white">
+                  <span className="size-2 animate-pulse rounded-full bg-blue-500" />
+                  Canal de Instagram
+                </div>
+              </Reveal>
+
+              <Reveal className="mt-8">
+                {/* Contenedor del logo ampliado para mejor visibilidad */}
+                <div className="relative h-32 w-80 md:h-40 md:w-96">
+                  <Image
+                    src="/Logo.png"
+                    alt="PAU Fest"
+                    fill
+                    priority
+                    className="object-contain brightness-200 invert"
+                  />
+                </div>
+              </Reveal>
+
+              <Reveal className="mt-6">
+                <p className="max-w-md leading-7 text-white/90">
+                  Sumate al canal para vivir cada detalle de la noche:
+                  novedades, fotos y los momentos que vamos a compartir
+                  juntos.
+                </p>
+              </Reveal>
+
+              <Reveal className="mt-8">
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-black transition hover:scale-105"
+                >
+                  Unirme al canal
+
+                  <svg
+                    className="size-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </a>
+              </Reveal>
+
             </div>
 
-            {/* Contenedor QR premium blanco puro */}
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="shrink-0 rounded-2xl border border-white/10 bg-white p-4 shadow-[0_0_30px_rgba(0,0,0,0.8)]"
-            >
-              <QRCodeSVG
-                value={CHANNEL_URL}
-                size={160}
-                level="M"
-                bgColor="transparent"
-                fgColor="#000000"
-              />
-            </motion.div>
+            {/* Derecha */}
+            <div className="flex justify-center">
+
+              <Reveal>
+                <div className="rounded-3xl bg-white p-5 shadow-xl">
+                  <Image
+                    src="/qr-placeholder.png"
+                    alt="Código QR"
+                    width={220}
+                    height={220}
+                    className="object-contain"
+                  />
+                </div>
+              </Reveal>
+
+            </div>
+
           </div>
+
         </div>
-      </Reveal>
+      </div>
+
     </section>
   )
 }

@@ -20,7 +20,7 @@ const DETAILS = [
   {
     icon: Shirt,
     label: 'Dress Code',
-    value: 'Elegante',
+    value: 'Elegante Sport/Gala',
     sub: 'Prendas oscuras / Estilo boliche',
   },
   {
@@ -38,17 +38,17 @@ export function EventDetails() {
     <section className="px-6 py-20 sm:py-24 select-none">
       <div className="mx-auto max-w-4xl">
         
-        {/* Cabecera unificada con bola de boliche e indicador en Dorado */}
+       {/* Cabecera unificada con bola de boliche e indicador en Blanco */}
         <Reveal className="text-center">
           <DiscoBall variant="icon" className="mb-4 text-[#c5a059]" />
-          <p className="text-xs uppercase tracking-[0.4em] text-[#c5a059] font-medium">
+          <p className="text-xs uppercase tracking-[0.4em] text-white font-medium">
             Los Detalles
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light tracking-wide bg-gradient-to-r from-neutral-100 via-white to-neutral-400 bg-clip-text text-transparent sm:text-5xl">
             La Celebración
           </h2>
         </Reveal>
-
+        
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {DETAILS.map((d, i) => (
             <Reveal key={d.label} delay={i * 0.08}>
@@ -79,7 +79,7 @@ export function EventDetails() {
               src={MAP_SRC}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="h-64 w-full grayscale invert opacity-50 contrast-125 transition-all duration-700 group-hover:opacity-85 group-hover:grayscale-[20%] group-hover:invert-0 sm:h-72"
+              className="h-64 w-full grayscale opacity-90 transition-all duration-700 group-hover:opacity-100 group-hover:grayscale-0 sm:h-72"
               style={{ border: 0 }}
               allowFullScreen={true}
             />
@@ -88,4 +88,4 @@ export function EventDetails() {
       </div>
     </section>
   )
-}98
+}
