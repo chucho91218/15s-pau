@@ -73,7 +73,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="text-xs uppercase tracking-[0.55em] text-white/50 sm:text-sm font-sans"
+          className="text-xs uppercase tracking-[0.55em] text-white sm:text-sm font-sans"
         >
           Mis XV Años
         </motion.p>
@@ -82,7 +82,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 font-serif text-7xl font-light italic leading-none tracking-normal text-silver [text-shadow:0_0_50px_rgba(255,255,255,0.15)] sm:text-8xl md:text-9xl"
+          className="mt-5 font-serif text-7xl font-light italic leading-none tracking-normal text-white [text-shadow:0_0_50px_rgba(255,255,255,0.15)] sm:text-8xl md:text-9xl"
         >
           Paula
         </motion.h1>
@@ -103,7 +103,7 @@ export function Hero() {
           15 · AGOSTO · 2026
         </motion.p>
 
-        <div className="mt-16 w-full">
+        <div className="mt-16 w-full text-white">
           <Countdown />
         </div>
       </div>
