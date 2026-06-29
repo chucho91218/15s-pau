@@ -21,7 +21,7 @@ const DETAILS = [
     icon: Shirt,
     label: 'Dress Code',
     value: 'Elegante Sport/Gala',
-    sub: 'Prendas oscuras / Estilo boliche',
+    sub: '',
   },
   {
     icon: MapPin,

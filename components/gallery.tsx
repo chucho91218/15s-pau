@@ -3,9 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { X, ZoomIn } from 'lucide-react'
+import { X, ZoomIn, Camera } from 'lucide-react'
 import { Reveal } from './reveal'
-import { DiscoBall } from './disco-ball'
 
 const IMAGES = [
   { src: '/DSC_4240.jpg', alt: 'Paula Foto 1' },
@@ -23,13 +22,13 @@ export function Gallery() {
 
   return (
     /* Forzamos fondo blanco a pantalla completa rompiendo márgenes del padre */
-    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-white text-black py-32 md:py-40 px-6 select-none border-t border-b border-zinc-100">
+    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen border-b border-t border-zinc-100 bg-white px-6 py-32 select-none md:py-40">
       <div className="mx-auto max-w-5xl">
         
        {/* Cabecera adaptada a contraste oscuro con indicador en Negro */}
         <Reveal className="text-center">
-          <DiscoBall variant="icon" className="mb-4 text-[#c5a059]" />
-          <p className="text-xs uppercase tracking-[0.35em] text-black font-medium">
+          <Camera strokeWidth={1.5} className="mx-auto mb-4 size-7 text-black" />
+          <p className="text-xs font-medium uppercase tracking-[0.35em] text-black">
             Recuerdos
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light tracking-wide text-zinc-800 sm:text-5xl">
@@ -54,8 +53,8 @@ export function Gallery() {
                   loading="lazy"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-[0.95] group-hover:brightness-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
-                  <div className="rounded-full bg-black/50 p-3 text-[#d4af37] border border-[#d4af37]/30 backdrop-blur-sm scale-75 group-hover:scale-100 transition-transform duration-500">
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="scale-75 rounded-full border border-[#d4af37]/30 bg-black/50 p-3 text-[#d4af37] backdrop-blur-sm transition-transform duration-500 group-hover:scale-100">
                     <ZoomIn className="size-4" />
                   </div>
                 </div>
