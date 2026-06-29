@@ -34,20 +34,21 @@ export function Hero() {
       {/* IMAGEN DE FONDO LIMPIA */}
       <div className="absolute inset-0 -z-20 h-full w-full max-w-full select-none pointer-events-none bg-black">
         
+        {/* Celular: Enfoque corrido al 25% para mostrar más esferas */}
         <div className="block md:hidden absolute inset-0 h-full w-full">
           <Image
-            src="/portadaoriginal.png"
+            src="/portadaoriginal1.png"
             alt="Paula Hero Background Mobile"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-[35%_center]"
           />
         </div>
 
         <div 
           className="hidden md:block absolute inset-0 h-full w-full"
           style={{
-            backgroundImage: "url('/portadaoriginal.png')",
+            backgroundImage: "url('/portadaoriginal1.png')",
             backgroundPosition: "center",
             backgroundSize: "contain",
             backgroundRepeat: "repeat",
