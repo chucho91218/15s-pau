@@ -3,12 +3,18 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
+const geistSans = Geist({ 
+  variable: '--font-geist-sans', 
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -33,7 +39,7 @@ export default function RootLayout({
       lang="es"
       className={`dark ${geistSans.variable} ${cormorant.variable}`}
     >
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="bg-background text-foreground font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

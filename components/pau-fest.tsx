@@ -62,7 +62,9 @@ export function PauFest() {
 
               <Reveal className="mt-8">
                 <a
-                  href="#"
+                  href="https://ig.me/j/AbaQmkiuvqGsJOsA/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-black transition hover:scale-105"
                 >
                   Unirme al canal
@@ -89,14 +91,24 @@ export function PauFest() {
             <div className="flex justify-center">
 
               <Reveal>
-                <div className="rounded-3xl bg-white p-5 shadow-xl">
-                  <Image
-                    src="/qr-placeholder.png"
-                    alt="Código QR"
-                    width={220}
-                    height={220}
-                    className="object-contain"
-                  />
+                <div className="flex flex-col items-center gap-5">
+                  <a 
+                    href="https://ig.me/j/AbaQmkiuvqGsJOsA/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block rounded-3xl bg-white p-5 shadow-xl transition-transform hover:scale-105"
+                  >
+                    <Image
+                      src="/qr.jpeg"
+                      alt="Código QR del Canal"
+                      width={220}
+                      height={220}
+                      className="object-contain"
+                    />
+                  </a>
+                  <p className="text-center font-sans text-xs font-medium uppercase tracking-[0.2em] text-white/70">
+                    Tocá o escaneá el código <br className="hidden sm:block" /> para unirte al canal
+                  </p>
                 </div>
               </Reveal>
 
