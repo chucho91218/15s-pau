@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+
   typescript: {
-    ignoreBuildErrors: true, // Mantiene tu configuración original
+    ignoreBuildErrors: true,
   },
+
   images: {
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 31536000,
+    unoptimized: true,
   },
 }
 
