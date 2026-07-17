@@ -41,11 +41,11 @@ export function Rsvp() {
                     <span className="font-medium text-zinc-900">$68.000</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
-                    <span className="text-zinc-400">Adolescentes (14 a 16 años):</span>
+                    <span className="text-zinc-400">Adolescentes (13 a 16 años):</span>
                     <span className="font-medium text-zinc-900">$58.000</span>
                   </div>
                   <div className="flex items-center justify-between pt-0.5">
-                    <span className="text-zinc-400">Niños (4 a 13 años):</span>
+                    <span className="text-zinc-400">Niños (4 a 12 años):</span>
                     <span className="font-medium text-zinc-900">$30.000</span>
                   </div>
                 </div>
